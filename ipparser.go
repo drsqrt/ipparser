@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-//check the validity of IPv4
+// check the validity of IPv4
 func IsValidIPv4(ipStr string) bool {
 	if strings.TrimSpace(ipStr) == "" {
 		log.Printf("IPv4 is empty string")
@@ -53,7 +53,7 @@ func IPv4toDecimal(ipStr string) (uint32, error) {
 	return decimal, nil
 }
 
-//another way of converting IPv4 string to decimal uint32
+// another way of converting IPv4 string to decimal uint32
 func IPv4toDecimal2(ipStr string) (uint32, error) {
 	parts := strings.Split(ipStr, ".")
 	if len(parts) != 4 {
@@ -70,4 +70,20 @@ func IPv4toDecimal2(ipStr string) (uint32, error) {
 		result = (result << 8) | uint32(num)
 	}
 	return result, nil
+}
+
+//IPv4 to Binary Expression
+func IPv4toBinary(ipStr string) (string, error) {
+	ip := net.ParseIP(ipStr)
+	if ip == nil {
+		return "", fmt.Errorf("invalid IP address")
+	}
+	ip = ip.To4()
+	_ = ip.IsPrivate()
+	// var result string
+	for _, ele := range ip {
+		//todo convert uint8 to binary in here
+		log.Printf("%v", ele)
+	}
+	return "", nil
 }
